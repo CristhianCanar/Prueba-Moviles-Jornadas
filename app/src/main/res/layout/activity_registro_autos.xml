@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_registro_autos"
-        app:menu="@menu/activity_registro_autos_drawer" />
+        app:headerLayout="@layout/nav_header_inicio"
+        app:menu="@menu/activity_inicio_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

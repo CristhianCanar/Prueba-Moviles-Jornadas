@@ -1,6 +1,7 @@
 package com.senasoft.jornadatres.control;
 
 import android.content.Intent;
+import android.media.ExifInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,20 +23,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
-public class ServiciosActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener {
-
-    Switch swServ1, swServ2,swServ3,swSrev4;
-    boolean estadoSwitch=false;
+public class InicioActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_servicios);
+        setContentView(R.layout.activity_inicio);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,51 +42,7 @@ public class ServiciosActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        //todo referenciacion elementos de Servicios
-
-        swServ1 = findViewById(R.id.swServ1);
-        swServ2 = findViewById(R.id.swServ2);
-        swServ3 = findViewById(R.id.swServ3);
-        swSrev4 = findViewById(R.id.swSrev4);
-
-
-
-        swServ1.setChecked(false);
-        swServ2.setChecked(false);
-        swServ3.setChecked(false);
-        swSrev4.setChecked(false);
-
     }
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean resultado) {
-        switch (compoundButton.getId()){
-            case R.id.swServ1:
-                if (resultado==true){
-                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.swServ2:
-                break;
-
-            case R.id.swServ3:
-                if (resultado==true){
-                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.swSrev4:
-                if (resultado==true){
-                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-
-    }
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -105,7 +57,7 @@ public class ServiciosActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.servicios, menu);
+        getMenuInflater().inflate(R.menu.inicio, menu);
         return true;
     }
 
@@ -128,24 +80,25 @@ public class ServiciosActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
         Intent intent;
 
+        int id = item.getItemId();
+
         if (id == R.id.nav_Inicio) {
-            intent = new Intent(getApplicationContext(), InicioActivity.class);
+            intent = new Intent(InicioActivity.this, InicioActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_RegAutos) {
-            intent = new Intent(getApplicationContext(), RegistroAutosActivity.class);
+            intent = new Intent(InicioActivity.this, RegistroAutosActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_Servicios) {
-            intent = new Intent(getApplicationContext(), ServiciosActivity.class);
+            intent = new Intent(InicioActivity.this, ServiciosActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_MiPerfil) {
-            intent = new Intent(getApplicationContext(), PerfilActivity.class);
+            intent = new Intent(InicioActivity.this, PerfilActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_AcercaDe) {
@@ -153,13 +106,11 @@ public class ServiciosActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_Salir){
             System.exit(0);
-        }
 
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }

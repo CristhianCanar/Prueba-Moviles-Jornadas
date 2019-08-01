@@ -1,5 +1,6 @@
 package com.senasoft.jornadatres.control;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,9 +22,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    EditText etNombrePerfil, etFechaNaciminetoPerfil, etCorreoPerfil, etFechaVencLicPerfil;
+    Button btnGuardarPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +38,7 @@ public class PerfilActivity extends AppCompatActivity
         setContentView(R.layout.activity_perfil);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,7 +46,30 @@ public class PerfilActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //todo referenciación
+        etNombrePerfil = findViewById(R.id.editNombrePerfil);
+        etFechaNaciminetoPerfil = findViewById(R.id.editFechaNaciminetoPerfil);
+        etCorreoPerfil = findViewById(R.id.editCorreoPerfil);
+        etFechaVencLicPerfil = findViewById(R.id.editFechaVencLicPerfil);
+
+
+        btnGuardarPerfil = findViewById(R.id.btnGuardarPerfil);
+        btnGuardarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //AGREGAR FUNCIONALIDAD
+            }
+        });
+
+
+
+
+
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -61,7 +84,7 @@ public class PerfilActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.perfil, menu);
+        getMenuInflater().inflate(R.menu.inicio, menu);
         return true;
     }
 
@@ -85,18 +108,28 @@ public class PerfilActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent;
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_Inicio) {
+            intent = new Intent(getApplicationContext(), InicioActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_RegAutos) {
+            intent = new Intent(getApplicationContext(), RegistroAutosActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_Servicios) {
+            intent = new Intent(getApplicationContext(), ServiciosActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_MiPerfil) {
+            intent = new Intent(getApplicationContext(), PerfilActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_AcercaDe) {
+            Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_Salir){
 
         }
 
@@ -104,4 +137,6 @@ public class PerfilActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".control.InicioActivity"
+            android:label="@string/title_activity_inicio"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".control.ServiciosActivity"
             android:label="@string/title_activity_servicios"
             android:theme="@style/AppTheme.NoActionBar" />

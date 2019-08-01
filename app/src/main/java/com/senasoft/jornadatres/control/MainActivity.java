@@ -1,7 +1,9 @@
-package com.senasoft.jornadatres;
+package com.senasoft.jornadatres.control;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.senasoft.jornadatres.R;
 
 public class MainActivity extends AppCompatActivity {
 

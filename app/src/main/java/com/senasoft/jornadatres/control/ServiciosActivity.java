@@ -129,6 +129,8 @@ public class ServiciosActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
+
             return true;
         }
 
@@ -144,6 +146,7 @@ public class ServiciosActivity extends AppCompatActivity
         Intent intent;
 
         if (id == R.id.nav_Inicio) {
+
             intent = new Intent(getApplicationContext(), InicioActivity.class);
             startActivity(intent);
             finish();

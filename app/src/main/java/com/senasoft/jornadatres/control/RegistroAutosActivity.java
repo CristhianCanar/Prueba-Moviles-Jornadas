@@ -1,11 +1,13 @@
 package com.senasoft.jornadatres.control;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -15,6 +17,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.senasoft.jornadatres.R;
+import com.senasoft.jornadatres.model.ManagerHelper;
+import com.senasoft.jornadatres.model.Vehicle;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -22,10 +26,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class RegistroAutosActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +44,17 @@ public class RegistroAutosActivity extends AppCompatActivity
     EditText etPlacaReg,etCiudadReg,etModeloReg,etFechaSoatReg;
     Spinner spMarcaReg, spColorReg;
     Button btnGuardarAuto;
+
+    private static final String CERO = "0";
+    private static final String BARRA = "/";
+
+    public final Calendar c = Calendar.getInstance();
+
+    final int mes = c.get(Calendar.MONTH);
+    final int dia = c.get(Calendar.DAY_OF_MONTH);
+    final int anio = c.get(Calendar.YEAR);
+
+    String spColorTxt, spMarcaTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +78,97 @@ public class RegistroAutosActivity extends AppCompatActivity
         etFechaSoatReg = findViewById(R.id.editFechaSoatReg);
         etModeloReg = findViewById(R.id.editModeloReg);
         spColorReg = findViewById(R.id.spColorReg);
+        spColorReg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               spColorTxt = (String) spColorReg.getSelectedItem();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         spMarcaReg = findViewById(R.id.spMarcaReg);
+        spMarcaReg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                spMarcaTxt = (String) spColorReg.getSelectedItem();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         btnGuardarAuto = findViewById(R.id.btnGuardarAuto);
         btnGuardarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //AGREGAR FUNCIONALIDAD
+                try{
+                    insertarRegistroVehiculo();
+                    Intent intent = new Intent(getApplicationContext(),RegistroAutosActivity.class);
+
+                    startActivity(intent);
+                    finish();
+                }catch (Exception e){
+                    Log.e("errorcarga","error al cargar archivos");
+                }
             }
         });
 
+        etFechaSoatReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    establecerFecha();
+
+                }catch (Exception e){
+                    Log.e("errorCalen","Error al salir calendario");
+                }
+
+            }
+        });
+
+    }
+
+    public void insertarRegistroVehiculo () throws ParseException {
+        Vehicle vehicle = new Vehicle();
+        ManagerHelper managerHelper = new ManagerHelper(getApplicationContext());
+        Date date;
+
+        vehicle.setPlacaVehicle(etPlacaReg.getText().toString());
+        vehicle.setCiudadVehicle(etCiudadReg.getText().toString());
+        vehicle.setFechaSoatVehicle(String.valueOf(date = new SimpleDateFormat("dd/mm/yy").parse(etFechaSoatReg.getText().toString())));
+        vehicle.setModeloVehicle(etModeloReg.getText().toString());
+        vehicle.setMarcaVehicle(spColorTxt.toString());
+        vehicle.setMarcaVehicle(spMarcaTxt.toString());
+
+        long insert = managerHelper.insertVehiculo(vehicle);
+        if (insert>0){
+            Toast.makeText(this, "Se insertaron los datos correctamente!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "No se insertaron los datos :(", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void establecerFecha(){
+        DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+                final int mesActual = i1 + 1;
+
+                String diaFormateado = (i2 < 10)? CERO + String.valueOf(i2):String.valueOf(i2);
+
+                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+
+                etFechaSoatReg.setText(diaFormateado + BARRA + mesFormateado + BARRA + i);
+
+            }
+        }, anio, mes, dia);
+
+
+        recogerFecha.show();
 
     }
 
@@ -95,6 +198,8 @@ public class RegistroAutosActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
+
             return true;
         }
 

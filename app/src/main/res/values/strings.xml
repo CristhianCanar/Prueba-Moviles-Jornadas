@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Jornada Tres</string>
+    <string name="app_name">Trami Autos</string>
     <string name="title_activity_menu_drawer">MenuDrawer</string>
 
     <string name="miperfil">Mi perfil</string>
-    <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="title_activity_perfil">Perfil</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Acerca de</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -20,9 +20,9 @@
     <string name="nombrecompl">Nombre completo</string>
     <string name="fechan">Fecha de nacimiento</string>
     <string name="correoelc">Correo electronico</string>
-    <string name="fechaven">Fecha vencimiento de licencia de consucción</string>
+    <string name="fechaven">Fecha vencimiento de licencia de conducción</string>
     <string name="guardar">Guardar</string>
-    <string name="title_activity_registro_autos">RegistroAutosActivity</string>
+    <string name="title_activity_registro_autos">Registro Autos</string>
     <string name="placaDos">Placa</string>
     <string name="ciudad">Ciudad</string>
     <string name="modelo">Modelo</string>
@@ -49,12 +49,12 @@
         <item>Fiat</item>
         <item>Alfaromero</item>
     </array>
-    <string name="title_activity_servicios">ServiciosActivity</string>
+    <string name="title_activity_servicios">Servicios</string>
     <string name="serv1">Renovación de SOAP</string>
     <string name="serv2">Revisión tecno-mecanica</string>
     <string name="serv3">Pago de impuesto del vehiculo</string>
     <string name="serv4">Pico y placa</string>
-    <string name="title_activity_inicio">InicioActivity</string>
+    <string name="title_activity_inicio">Inicio</string>
     <string name="marca">Marca</string>
     <string name="placa">Placa</string>
     <string name="stringVacio"></string>

@@ -46,9 +46,14 @@ public class PerfilActivity extends AppCompatActivity
 
     public final Calendar c = Calendar.getInstance();
 
-    final int mes = c.get(Calendar.MONTH);
-    final int dia = c.get(Calendar.DAY_OF_MONTH);
-    final int anio = c.get(Calendar.YEAR);
+     int mes = c.get(Calendar.MONTH);
+     int dia = c.get(Calendar.DAY_OF_MONTH);
+     int anio = c.get(Calendar.YEAR);
+
+    int diaActualNum;
+    int mesActualNum;
+    int anioActualNum;
+    int diaFinal= 0,mesFinal = 0,anioFinal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,9 @@ public class PerfilActivity extends AppCompatActivity
 
                 try {
                     insertReg();
+                    calculoVigenciaLicencia();
+
+
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -121,6 +129,8 @@ public class PerfilActivity extends AppCompatActivity
         if (insert < 0) {Toast.makeText(this, "No se inserto el dato", Toast.LENGTH_SHORT).show();}
         else {
             Toast.makeText(this, "Se inserto el dato", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), InicioActivity.class);
             startActivity(intent);
             finish();
@@ -133,20 +143,42 @@ public class PerfilActivity extends AppCompatActivity
 
         DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            public void onDateSet(DatePicker datePicker, int anio, int mes, int dia) {
 
-                final int mesActual = i1 + 1;
+                final int mesActual = mes + 1;
 
-                 String diaFormateado = (i2 < 10)? CERO + String.valueOf(i2):String.valueOf(i2);
+                 String diaFormateado = (dia < 10)? CERO + String.valueOf(dia):String.valueOf(dia);
 
                  String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
 
-                 etFechaNaciminetoPerfil.setText(diaFormateado + BARRA + mesFormateado + BARRA + i);
+
+                 etFechaNaciminetoPerfil.setText(diaFormateado + BARRA + mesFormateado + BARRA + anio);
 
             }
         }, anio, mes, dia);
 
         recogerFecha.show();
+        /*
+        if (dia>diaActualNum){
+            diaFinal = (dia-diaActualNum);
+        }else{
+            diaFinal = (diaActualNum-dia);
+        }
+
+        if (mes>mesActualNum){
+            mesFinal = (mes-mesActualNum);
+        }else{
+            mesFinal = (mesActualNum-mes);
+        }
+
+        if (anio>anioActualNum){
+            anioFinal = (anio-anioActualNum);
+        }else{
+            anioFinal = (anioActualNum-anio);
+        }
+            */
+
+
 
     }
 
@@ -156,11 +188,13 @@ public class PerfilActivity extends AppCompatActivity
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
 
-                final int mesActual = i1 + 1;
+                mesActualNum = i1 + 1;
+                diaActualNum = i2;
+                anioActualNum = i;
 
                 String diaFormateado = (i2 < 10)? CERO + String.valueOf(i2):String.valueOf(i2);
 
-                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                String mesFormateado = (mesActualNum < 10)? CERO + String.valueOf(mesActualNum):String.valueOf(mesActualNum);
 
                 etFechaVencLicPerfil.setText(diaFormateado + BARRA + mesFormateado + BARRA + i);
 
@@ -168,6 +202,32 @@ public class PerfilActivity extends AppCompatActivity
         }, anio, mes, dia);
 
         recogerFecha.show();
+
+    }
+
+    public void calculoVigenciaLicencia (){
+        dia++;
+        if (dia>diaActualNum){
+            diaFinal = (dia-diaActualNum);
+        }else if(dia<=diaActualNum){
+            diaFinal = (diaActualNum-dia);
+        }
+
+        if (mes>mesActualNum){
+            mesFinal = (mes-mesActualNum);
+        }else if (mes<=mesActualNum){
+            mesFinal = (mesActualNum-mes);
+        }
+
+        if (anio>anioActualNum){
+            anioFinal=(anio-anioActualNum);
+        }else if (anio<=anioActualNum){
+            anioFinal=(anio-anioActualNum);
+        }
+
+        Toast.makeText(PerfilActivity.this, "A usted le quedan "+diaFinal+" dias,"+
+                       mesFinal +" meses, "+anioFinal+" años, de vigencia de su licencia"
+                , Toast.LENGTH_LONG).show();
 
     }
 
@@ -198,6 +258,8 @@ public class PerfilActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
+
             return true;
         }
 

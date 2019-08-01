@@ -9,7 +9,7 @@
             android:title="Inicio" />
         <item
             android:id="@+id/nav_RegAutos"
-            android:title="Rgistro autos" />
+            android:title="Registro autos" />
         <item
             android:id="@+id/nav_Servicios"
             android:title="Servicios" />

@@ -36,12 +36,13 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="@string/correoelc"
-        android:inputType="textWebEmailAddress|textPersonName"
+        android:inputType="textWebEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editFechaNaciminetoPerfil" />
 
     <EditText
+        android:drawableRight="@android:drawable/ic_menu_my_calendar"
         android:id="@+id/editFechaVencLicPerfil"
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -71,6 +72,7 @@
 
     <EditText
         android:id="@+id/editFechaNaciminetoPerfil"
+        android:drawableRight="@android:drawable/ic_menu_my_calendar"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"

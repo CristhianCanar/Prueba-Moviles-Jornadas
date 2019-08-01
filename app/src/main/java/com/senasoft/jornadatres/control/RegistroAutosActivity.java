@@ -58,7 +58,7 @@ public class RegistroAutosActivity extends AppCompatActivity
         spColorReg = findViewById(R.id.spColorReg);
         spMarcaReg = findViewById(R.id.spMarcaReg);
 
-        btnGuardarAuto = findViewById(R.id.btnGuardarPerfil);
+        btnGuardarAuto = findViewById(R.id.btnGuardarAuto);
         btnGuardarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

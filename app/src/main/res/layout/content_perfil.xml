@@ -26,18 +26,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editFechaNaciminetoPerfil"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/fechan"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNombrePerfil" />
-
-    <EditText
         android:id="@+id/editCorreoPerfil"
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -48,7 +36,7 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="@string/correoelc"
-        android:inputType="textPersonName"
+        android:inputType="textWebEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editFechaNaciminetoPerfil" />
@@ -80,5 +68,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editFechaVencLicPerfil" />
+
+    <EditText
+        android:id="@+id/editFechaNaciminetoPerfil"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/fechan"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNombrePerfil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

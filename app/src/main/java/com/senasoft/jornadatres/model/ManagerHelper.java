@@ -2,10 +2,15 @@ package com.senasoft.jornadatres.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 public class ManagerHelper {
 
@@ -47,9 +52,9 @@ public class ManagerHelper {
         ContentValues values = new ContentValues();
 
         values.put(Constantes.NAME_COLUMN_1, person.getNombrePerson());
-        values.put(Constantes.NAME_COLUMN_2, person.getFechaNacPerson());
+        values.put(Constantes.NAME_COLUMN_2, String.valueOf(person.getFechaNacPerson()));
         values.put(Constantes.NAME_COLUMN_3, person.getCorreoPerson());
-        values.put(Constantes.NAME_COLUMN_4, person.getFechaVencLicencia());
+        values.put(Constantes.NAME_COLUMN_4, String.valueOf(person.getFechaVencLicencia()));
 
         long insert = db.insert(Constantes.NAME_TABLE_1, null, values);
 
@@ -59,17 +64,134 @@ public class ManagerHelper {
 
     }
 
-    public List<Person> listPrson(){
+    public long insertService1(Services service){
 
-        openRd();
+        openWr();
 
-        ArrayList<Person> list = new ArrayList<>();
+        ContentValues values = new ContentValues();
 
+        values.put(Constantes.NAME_COLUMN_11, service.getServ1());
+        values.put(Constantes.NAME_COLUMN_12, service.getServ2());
+        values.put(Constantes.NAME_COLUMN_13, service.getServ3());
+        values.put(Constantes.NAME_COLUMN_14, service.getServ4());
 
-
+        long insert = db.insert(Constantes.NAME_TABLE_3, null, values);
 
         close();
 
+        return insert;
+    }
+
+    public List<Services> listServices(){
+
+        openRd();
+
+        ArrayList<Services> list = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constantes.NAME_TABLE_3, null);
+
+        if (cursor.moveToFirst()){
+            do {
+
+                Services services = new Services();
+
+                services.setServ1(cursor.getInt(0));
+                services.setServ2(cursor.getInt(1));
+                services.setServ3(cursor.getInt(2));
+                services.setServ4(cursor.getInt(3));
+
+            }while (cursor.moveToNext());
+        }
+
+        close();
+
+        return list;
+    }
+
+    public long insertVehiculo(Vehicle vehicle){
+
+        openWr();
+
+        ContentValues values = new ContentValues();
+
+        values.put(Constantes.NAME_COLUMN_5, vehicle.getMarcaVehicle());
+        values.put(Constantes.NAME_COLUMN_6, vehicle.getColorVehicle());
+        values.put(Constantes.NAME_COLUMN_7, vehicle.getPlacaVehicle());
+        values.put(Constantes.NAME_COLUMN_8, vehicle.getCiudadVehicle());
+        values.put(Constantes.NAME_COLUMN_9, vehicle.getModeloVehicle());
+        values.put(Constantes.NAME_COLUMN_10, vehicle.getFechaSoatVehicle());
+
+        long insert = db.insert(Constantes.NAME_TABLE_2, null, values);
+
+        close();
+
+        return insert;
+
+    }
+
+
+    public List<Person> listPerson() throws ParseException {
+
+        openRd();
+
+        Date date;
+
+        ArrayList<Person> list = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constantes.NAME_TABLE_1, null);
+
+
+        if (cursor.moveToFirst()){
+            do {
+
+                Person person = new Person();
+
+                person.setNombrePerson(cursor.getString(1));
+                person.setFechaNacPerson(date = new SimpleDateFormat("dd/mm/yy").parse(cursor.getString(2)));
+                person.setCorreoPerson(cursor.getString(3));
+                person.setFechaVencLicencia(date = new SimpleDateFormat("dd/mm/yy").parse(cursor.getString(4)));
+
+                list.add(person);
+
+            }while(cursor.moveToNext());
+        }
+
+        close();
+
+
+        return list;
+
+    }
+
+    public List<Vehicle> listVehiculo() throws ParseException {
+
+        openRd();
+
+        Date date;
+
+        ArrayList<Vehicle> list = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constantes.NAME_TABLE_2, null);
+
+
+        if (cursor.moveToFirst()){
+            do {
+
+                Vehicle vehicle = new Vehicle();
+
+                vehicle.setMarcaVehicle(cursor.getString(1));
+                vehicle.setColorVehicle(cursor.getString(2));
+                vehicle.setPlacaVehicle(cursor.getString(3));
+                vehicle.setCiudadVehicle(cursor.getString(4));
+                vehicle.setModeloVehicle(cursor.getString(5));
+                vehicle.setFechaSoatVehicle(cursor.getString(6));
+
+                list.add(vehicle);
+
+            }while(cursor.moveToNext());
+        }
+
+        close();
 
         return list;
 

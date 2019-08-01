@@ -14,6 +14,8 @@ public class ControlHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         sqLiteDatabase.execSQL(Constantes.CREATE_TABLE_1);
+        sqLiteDatabase.execSQL(Constantes.CREATE_TABLE_2);
+        sqLiteDatabase.execSQL(Constantes.CREATE_TABLE_3);
 
     }
 
@@ -21,6 +23,8 @@ public class ControlHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
         sqLiteDatabase.execSQL(Constantes.DROP_TABLE_1);
+        sqLiteDatabase.execSQL(Constantes.DROP_TABLE_2);
+        sqLiteDatabase.execSQL(Constantes.DROP_TABLE_3);
         onCreate(sqLiteDatabase);
 
     }

@@ -1,17 +1,19 @@
 package com.senasoft.jornadatres.model;
 
+import java.util.Date;
+
 public class Person {
 
     private int idPerson;
     private String nombrePerson;
-    private String fechaNacPerson;
+    private Date fechaNacPerson;
     private String correoPerson;
-    private String fechaVencLicencia;
+    private Date fechaVencLicencia;
 
     public Person() {
     }
 
-    public Person(int idPerson, String nombrePerson, String fechaNacPerson, String correoPerson, String fechaVencLicencia) {
+    public Person(int idPerson, String nombrePerson, Date fechaNacPerson, String correoPerson, Date fechaVencLicencia) {
         this.idPerson = idPerson;
         this.nombrePerson = nombrePerson;
         this.fechaNacPerson = fechaNacPerson;
@@ -36,11 +38,11 @@ public class Person {
         this.nombrePerson = nombrePerson;
     }
 
-    public String getFechaNacPerson() {
+    public Date getFechaNacPerson() {
         return fechaNacPerson;
     }
 
-    public void setFechaNacPerson(String fechaNacPerson) {
+    public void setFechaNacPerson(Date fechaNacPerson) {
         this.fechaNacPerson = fechaNacPerson;
     }
 
@@ -52,11 +54,11 @@ public class Person {
         this.correoPerson = correoPerson;
     }
 
-    public String getFechaVencLicencia() {
+    public Date getFechaVencLicencia() {
         return fechaVencLicencia;
     }
 
-    public void setFechaVencLicencia(String fechaVencLicencia) {
+    public void setFechaVencLicencia(Date fechaVencLicencia) {
         this.fechaVencLicencia = fechaVencLicencia;
     }
 }

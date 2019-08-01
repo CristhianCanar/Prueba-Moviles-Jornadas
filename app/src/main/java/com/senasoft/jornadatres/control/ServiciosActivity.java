@@ -15,6 +15,9 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.senasoft.jornadatres.R;
+import com.senasoft.jornadatres.model.Constantes;
+import com.senasoft.jornadatres.model.ManagerHelper;
+import com.senasoft.jornadatres.model.Services;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -31,6 +34,8 @@ public class ServiciosActivity extends AppCompatActivity
 
     Switch swServ1, swServ2,swServ3,swSrev4;
     boolean estadoSwitch=false;
+
+    private ManagerHelper managerHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +72,23 @@ public class ServiciosActivity extends AppCompatActivity
         switch (compoundButton.getId()){
             case R.id.swServ1:
                 if (resultado==true){
-                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
+                    activarServicio(1, Constantes.NAME_COLUMN_11, 1);
                 }
                 break;
 
             case R.id.swServ2:
+                activarServicio(1, Constantes.NAME_COLUMN_12, 1);
                 break;
 
             case R.id.swServ3:
                 if (resultado==true){
-                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
+                    activarServicio(1, Constantes.NAME_COLUMN_13, 1);
                 }
                 break;
 
             case R.id.swSrev4:
                 if (resultado==true){
-                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
+                    activarServicio(1, Constantes.NAME_COLUMN_14, 1);
                 }
                 break;
         }
@@ -90,7 +96,12 @@ public class ServiciosActivity extends AppCompatActivity
     }
 
 
+    public void activarServicio(int id, String column, int value){
 
+        long update = managerHelper.updateService(id, column, value);
+
+        if (update > 0) Toast.makeText(this, "Se han actualizado el servicio", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onBackPressed() {

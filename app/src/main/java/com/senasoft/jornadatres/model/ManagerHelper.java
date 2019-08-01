@@ -64,16 +64,23 @@ public class ManagerHelper {
 
     }
 
-    public long insertService1(Services service){
+    public long insertService1(){
 
         openWr();
 
+        Services services = new Services();
+
+        services.setServ1(0);
+        services.setServ2(0);
+        services.setServ3(0);
+        services.setServ4(0);
+
         ContentValues values = new ContentValues();
 
-        values.put(Constantes.NAME_COLUMN_11, service.getServ1());
-        values.put(Constantes.NAME_COLUMN_12, service.getServ2());
-        values.put(Constantes.NAME_COLUMN_13, service.getServ3());
-        values.put(Constantes.NAME_COLUMN_14, service.getServ4());
+        values.put(Constantes.NAME_COLUMN_11, services.getServ1());
+        values.put(Constantes.NAME_COLUMN_12, services.getServ2());
+        values.put(Constantes.NAME_COLUMN_13, services.getServ3());
+        values.put(Constantes.NAME_COLUMN_14, services.getServ4());
 
         long insert = db.insert(Constantes.NAME_TABLE_3, null, values);
 
@@ -163,7 +170,7 @@ public class ManagerHelper {
 
     }
 
-    public List<Vehicle> listVehiculo() throws ParseException {
+    public List<Vehicle> listVehiculo(){
 
         openRd();
 
@@ -179,12 +186,17 @@ public class ManagerHelper {
 
                 Vehicle vehicle = new Vehicle();
 
-                vehicle.setMarcaVehicle(cursor.getString(1));
-                vehicle.setColorVehicle(cursor.getString(2));
-                vehicle.setPlacaVehicle(cursor.getString(3));
-                vehicle.setCiudadVehicle(cursor.getString(4));
-                vehicle.setModeloVehicle(cursor.getString(5));
-                vehicle.setFechaSoatVehicle(cursor.getString(6));
+                try {
+                    vehicle.setMarcaVehicle(cursor.getString(1));
+                    vehicle.setColorVehicle(cursor.getString(2));
+                    vehicle.setPlacaVehicle(cursor.getString(3));
+                    vehicle.setCiudadVehicle(cursor.getString(4));
+                    vehicle.setModeloVehicle(cursor.getString(5));
+                    vehicle.setFechaSoatVehicle(cursor.getString(6));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
 
                 list.add(vehicle);
 
@@ -195,6 +207,23 @@ public class ManagerHelper {
 
         return list;
 
+    }
+
+    public long updateService(int id, String column, int value){
+
+        openWr();
+
+        String[] data = {String.valueOf(id)};
+
+        ContentValues values = new ContentValues();
+
+        values.put(column, value);
+
+        long update = db.update(Constantes.NAME_TABLE_2, values, Constantes.NAME_COLUMN_ID+ "=?", data);
+
+        close();
+
+        return update;
     }
 
 }

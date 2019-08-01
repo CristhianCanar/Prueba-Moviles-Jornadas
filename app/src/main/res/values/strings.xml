@@ -58,5 +58,9 @@
     <string name="marca">Marca</string>
     <string name="placa">Placa</string>
     <string name="stringVacio"></string>
+    <string name="renovacionsoap">Renovación SOAP</string>
+    <string name="proximoseventos">Proximos eventos</string>
+    <string name="revisiontecnomecanica">Revisión tecno-mecánica</string>
+    <string name="pagoimpuesto">Pago impuesto vehicular</string>
 
 </resources>

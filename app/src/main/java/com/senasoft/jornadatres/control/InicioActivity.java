@@ -16,6 +16,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.senasoft.jornadatres.R;
+import com.senasoft.jornadatres.model.AdapterItemImpVeh;
+import com.senasoft.jornadatres.model.AdapterItemSoap;
+import com.senasoft.jornadatres.model.AdapterItemTecno;
+import com.senasoft.jornadatres.model.ManagerHelper;
+import com.senasoft.jornadatres.model.Services;
+import com.senasoft.jornadatres.model.Vehicle;
+import com.senasoft.jornadatres.model.Vehiculo;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -23,25 +30,93 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.text.ParseException;
+import java.util.ArrayList;
 
 public class InicioActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView lvLista1, lvLista2, lvLista3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
+
+        referent();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        mostrarServicios();
+    }
+
+    private void referent() {
+
+        lvLista1 = findViewById(R.id.lvListaServ1);
+        lvLista2 = findViewById(R.id.lvListaServ2);
+        lvLista3 = findViewById(R.id.lvListaServ3);
+    }
+
+    private void mostrarServicios() {
+
+        try {
+
+            ManagerHelper managerHelper = new ManagerHelper(getApplicationContext());
+
+            ArrayList<Services> services = new ArrayList<>(managerHelper.listServices());
+
+            if (services.get(0).getServ1() == 1) {
+
+                AdapterItemSoap adapterItemSoap;
+
+                ArrayList<Vehicle> list = new ArrayList<>(managerHelper.listVehiculo());
+
+                adapterItemSoap = new AdapterItemSoap(getApplicationContext(), list);
+
+                lvLista1.setAdapter(adapterItemSoap);
+
+            }
+
+            if (services.get(1).getServ2() == 1) {
+
+                ArrayList<Vehicle> list = new ArrayList<>(managerHelper.listVehiculo());
+
+                AdapterItemTecno adapterItemTecno = new AdapterItemTecno(getApplicationContext(), list);
+
+                lvLista2.setAdapter(adapterItemTecno);
+            }
+
+            if (services.get(2).getServ3() == 1) {
+
+                ArrayList<Vehicle> list = new ArrayList<>(managerHelper.listVehiculo());
+
+                AdapterItemImpVeh adapter = new AdapterItemImpVeh(getApplicationContext(), list);
+
+                lvLista3.setAdapter(adapter);
+
+            }
+
+            if (services.get(3).getServ4() == 1) {
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -104,7 +179,7 @@ public class InicioActivity extends AppCompatActivity
         } else if (id == R.id.nav_AcercaDe) {
             Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_Salir){
+        } else if (id == R.id.nav_Salir) {
             System.exit(0);
 
         }

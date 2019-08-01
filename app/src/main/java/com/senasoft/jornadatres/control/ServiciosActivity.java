@@ -1,5 +1,6 @@
 package com.senasoft.jornadatres.control;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 public class ServiciosActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,14 +33,7 @@ public class ServiciosActivity extends AppCompatActivity
         setContentView(R.layout.activity_servicios);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -86,19 +81,31 @@ public class ServiciosActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        Intent intent;
 
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_Inicio) {
+            intent = new Intent(getApplicationContext(), InicioActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_RegAutos) {
+            intent = new Intent(getApplicationContext(), RegistroAutosActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_Servicios) {
+            intent = new Intent(getApplicationContext(), ServiciosActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_MiPerfil) {
+            intent = new Intent(getApplicationContext(), PerfilActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.nav_AcercaDe) {
+            Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_Salir){
+            System.exit(0);
         }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

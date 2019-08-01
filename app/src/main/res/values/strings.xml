@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Jornada Tres</string>
+    <string name="title_activity_menu_drawer">MenuDrawer</string>
+
     <string name="miperfil">Mi perfil</string>
     <string name="title_activity_perfil">PerfilActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -21,7 +23,7 @@
     <string name="fechaven">Fecha vencimiento de licencia de consucción</string>
     <string name="guardar">Guardar</string>
     <string name="title_activity_registro_autos">RegistroAutosActivity</string>
-    <string name="placa">Placa</string>
+    <string name="placaDos">Placa</string>
     <string name="ciudad">Ciudad</string>
     <string name="modelo">Modelo</string>
     <string name="fechasoat">Fecha SOAT</string>
@@ -52,5 +54,8 @@
     <string name="serv2">Revisión tecno-mecanica</string>
     <string name="serv3">Pago de impuesto del vehiculo</string>
     <string name="serv4">Pico y placa</string>
+    <string name="title_activity_inicio">InicioActivity</string>
+    <string name="marca">Marca</string>
+    <string name="placa">Placa</string>
 
 </resources>

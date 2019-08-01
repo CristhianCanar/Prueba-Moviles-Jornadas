@@ -1,6 +1,7 @@
 package com.senasoft.jornadatres.control;
 
 import android.content.Intent;
+import android.media.ExifInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,13 +25,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
-public class PerfilActivity extends AppCompatActivity
+public class InicioActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_inicio);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -79,29 +80,32 @@ public class PerfilActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+
         Intent intent;
 
+        int id = item.getItemId();
+
         if (id == R.id.nav_Inicio) {
-            intent = new Intent(getApplicationContext(), InicioActivity.class);
+            intent = new Intent(InicioActivity.this, InicioActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_RegAutos) {
-            intent = new Intent(getApplicationContext(), RegistroAutosActivity.class);
+            intent = new Intent(InicioActivity.this, RegistroAutosActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_Servicios) {
-            intent = new Intent(getApplicationContext(), ServiciosActivity.class);
+            intent = new Intent(InicioActivity.this, ServiciosActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_MiPerfil) {
-            intent = new Intent(getApplicationContext(), PerfilActivity.class);
+            intent = new Intent(InicioActivity.this, PerfilActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_AcercaDe) {
             Toast.makeText(this, "Empresa dedicada a la implementacion de software", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_Salir){
+            System.exit(0);
 
         }
 

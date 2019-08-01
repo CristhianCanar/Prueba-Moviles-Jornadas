@@ -72,7 +72,7 @@ public class InicioActivity extends AppCompatActivity
 
             ArrayList<Services> services = new ArrayList<>(managerHelper.listServices());
 
-            if (services.get(0).getServ1() == 1) {
+            if (services.get(0).getServ1() == 0) {
 
                 AdapterItemSoap adapterItemSoap;
 
@@ -84,7 +84,7 @@ public class InicioActivity extends AppCompatActivity
 
             }
 
-            if (services.get(1).getServ2() == 1) {
+            if (services.get(0).getServ2() == 0) {
 
                 ArrayList<Vehicle> list = new ArrayList<>(managerHelper.listVehiculo());
 
@@ -93,7 +93,7 @@ public class InicioActivity extends AppCompatActivity
                 lvLista2.setAdapter(adapterItemTecno);
             }
 
-            if (services.get(2).getServ3() == 1) {
+            if (services.get(0).getServ3() == 0) {
 
                 ArrayList<Vehicle> list = new ArrayList<>(managerHelper.listVehiculo());
 
@@ -103,7 +103,7 @@ public class InicioActivity extends AppCompatActivity
 
             }
 
-            if (services.get(3).getServ4() == 1) {
+            if (services.get(0).getServ4() == 0) {
 
             }
         }catch (Exception e){

@@ -107,6 +107,8 @@ public class ManagerHelper {
                 services.setServ3(cursor.getInt(2));
                 services.setServ4(cursor.getInt(3));
 
+                list.add(services);
+
             }while (cursor.moveToNext());
         }
 

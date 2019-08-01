@@ -29,13 +29,20 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ServiciosActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
     Switch swServ1, swServ2,swServ3,swSrev4;
     boolean estadoSwitch=false;
 
+
     private ManagerHelper managerHelper;
+    int valor;
+    List<Services> list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,35 +67,106 @@ public class ServiciosActivity extends AppCompatActivity
         swSrev4 = findViewById(R.id.swSrev4);
 
 
-
-        swServ1.setChecked(false);
-        swServ2.setChecked(false);
-        swServ3.setChecked(false);
-        swSrev4.setChecked(false);
+        //cambiarSwitch();
 
     }
+
+    /*private void cambiarSwitch() {
+
+
+        list = managerHelper.listServices();
+
+        int serv1 = list.get(0).getServ1();
+        int serv2 = list.get(0).getServ2();
+        int serv3 = list.get(0).getServ3();
+        int serv4 = list.get(0).getServ4();
+
+        if (serv1 == 1){
+            swServ1.setChecked(true);
+        }else {
+            swServ1.setChecked(false);
+        }
+
+        if (serv2 == 1){
+            swServ2.setChecked(true);
+        }else {
+            swServ2.setChecked(false);
+        }
+
+        if (serv3 == 1){
+            swServ3.setChecked(true);
+        }else {
+            swServ3.setChecked(false);
+        }
+
+        if (serv4 == 1){
+            swSrev4.setChecked(true);
+        }else {
+            swSrev4.setChecked(false);
+        }
+
+    }
+*/
+
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean resultado) {
         switch (compoundButton.getId()){
             case R.id.swServ1:
                 if (resultado==true){
-                    activarServicio(1, Constantes.NAME_COLUMN_11, 1);
+                    list = managerHelper.listServices();
+                    valor = list.get(0).getServ1();
+                    if (valor==1){
+                        swServ1.setChecked(true);
+                        activarServicio(1, Constantes.NAME_COLUMN_11, 1);
+                    }
+                }else {
+                    swServ1.setChecked(false);
+                    activarServicio(1, Constantes.NAME_COLUMN_11, 0);
                 }
                 break;
 
             case R.id.swServ2:
-                activarServicio(1, Constantes.NAME_COLUMN_12, 1);
+                list = managerHelper.listServices();
+                valor = list.get(0).getServ2();
+                if (valor==1){
+                    swServ1.setChecked(true);
+                    activarServicio(1, Constantes.NAME_COLUMN_12, 1);
+
+                }else {
+                    swServ1.setChecked(false);
+                    activarServicio(1, Constantes.NAME_COLUMN_12, 0);
+
+                }
                 break;
 
             case R.id.swServ3:
                 if (resultado==true){
-                    activarServicio(1, Constantes.NAME_COLUMN_13, 1);
+                    list = managerHelper.listServices();
+                    valor = list.get(0).getServ3();
+                    if (valor==1){
+                        swServ1.setChecked(true);
+                        activarServicio(1, Constantes.NAME_COLUMN_13, 1);
+
+                    }else {
+                        swServ1.setChecked(false);
+                        activarServicio(1, Constantes.NAME_COLUMN_13, 0);
+                    }
                 }
                 break;
 
             case R.id.swSrev4:
                 if (resultado==true){
-                    activarServicio(1, Constantes.NAME_COLUMN_14, 1);
+                    list = managerHelper.listServices();
+                    valor = list.get(0).getServ4();
+                    if (valor==1){
+                        swServ1.setChecked(true);
+                        activarServicio(1, Constantes.NAME_COLUMN_14, 1);
+
+                    }else {
+                        swServ1.setChecked(false);
+                        activarServicio(1, Constantes.NAME_COLUMN_14, 0);
+
+                    }
                 }
                 break;
         }

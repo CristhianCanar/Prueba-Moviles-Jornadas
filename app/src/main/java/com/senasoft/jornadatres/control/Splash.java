@@ -20,9 +20,6 @@ public class Splash extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        ManagerHelper managerHelper = new ManagerHelper(this);
-        managerHelper.insertService1();
-
         Timer timer = new Timer();
 
         TimerTask timerTask = new TimerTask() {

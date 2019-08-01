@@ -47,5 +47,10 @@
         <item>Fiat</item>
         <item>Alfaromero</item>
     </array>
+    <string name="title_activity_servicios">ServiciosActivity</string>
+    <string name="serv1">Renovación de SOAP</string>
+    <string name="serv2">Revisión tecno-mecanica</string>
+    <string name="serv3">Pago de impuesto del vehiculo</string>
+    <string name="serv4">Pico y placa</string>
 
 </resources>

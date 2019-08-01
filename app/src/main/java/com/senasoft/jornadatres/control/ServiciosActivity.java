@@ -22,10 +22,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class ServiciosActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+
+    Switch swServ1, swServ2,swServ3,swSrev4;
+    boolean estadoSwitch=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,51 @@ public class ServiciosActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //todo referenciacion elementos de Servicios
+
+        swServ1 = findViewById(R.id.swServ1);
+        swServ2 = findViewById(R.id.swServ2);
+        swServ3 = findViewById(R.id.swServ3);
+        swSrev4 = findViewById(R.id.swSrev4);
+
+
+
+        swServ1.setChecked(false);
+        swServ2.setChecked(false);
+        swServ3.setChecked(false);
+        swSrev4.setChecked(false);
+
     }
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean resultado) {
+        switch (compoundButton.getId()){
+            case R.id.swServ1:
+                if (resultado==true){
+                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.swServ2:
+                break;
+
+            case R.id.swServ3:
+                if (resultado==true){
+                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.swSrev4:
+                if (resultado==true){
+                    Toast.makeText(ServiciosActivity.this, "Prendio!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
+    }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -111,4 +160,6 @@ public class ServiciosActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

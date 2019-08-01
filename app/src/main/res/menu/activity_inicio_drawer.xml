@@ -15,7 +15,7 @@
             android:title="Servicios" />
     </group>
 
-    <item android:title="________________________________">
+    <item android:title="@string/stringVacio">
         <menu>
             <item
                 android:id="@+id/nav_MiPerfil"

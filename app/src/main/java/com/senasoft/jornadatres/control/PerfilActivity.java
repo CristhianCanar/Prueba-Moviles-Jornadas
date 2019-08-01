@@ -22,10 +22,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    EditText etNombrePerfil, etFechaNaciminetoPerfil, etCorreoPerfil, etFechaVencLicPerfil;
+    Button btnGuardarPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,30 @@ public class PerfilActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //todo referenciación
+        etNombrePerfil = findViewById(R.id.editNombrePerfil);
+        etFechaNaciminetoPerfil = findViewById(R.id.editFechaNaciminetoPerfil);
+        etCorreoPerfil = findViewById(R.id.editCorreoPerfil);
+        etFechaVencLicPerfil = findViewById(R.id.editFechaVencLicPerfil);
+
+
+        btnGuardarPerfil = findViewById(R.id.btnGuardarPerfil);
+        btnGuardarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //AGREGAR FUNCIONALIDAD
+            }
+        });
+
+
+
+
+
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -109,4 +137,6 @@ public class PerfilActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

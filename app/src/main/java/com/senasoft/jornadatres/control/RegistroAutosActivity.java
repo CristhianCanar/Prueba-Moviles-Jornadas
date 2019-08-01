@@ -22,10 +22,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class RegistroAutosActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    EditText etPlacaReg,etCiudadReg,etModeloReg,etFechaSoatReg;
+    Spinner spMarcaReg, spColorReg;
+    Button btnGuardarAuto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,25 @@ public class RegistroAutosActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //todo referenciacion elementos Registro
+
+        etPlacaReg = findViewById(R.id.editPlacaReg);
+        etCiudadReg = findViewById(R.id.editCiudadReg);
+        etFechaSoatReg = findViewById(R.id.editFechaSoatReg);
+        etModeloReg = findViewById(R.id.editModeloReg);
+        spColorReg = findViewById(R.id.spColorReg);
+        spMarcaReg = findViewById(R.id.spMarcaReg);
+
+        btnGuardarAuto = findViewById(R.id.btnGuardarPerfil);
+        btnGuardarAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //AGREGAR FUNCIONALIDAD
+            }
+        });
+
+
     }
 
     @Override

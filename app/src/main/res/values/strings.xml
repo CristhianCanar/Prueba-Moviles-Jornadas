@@ -57,5 +57,6 @@
     <string name="title_activity_inicio">InicioActivity</string>
     <string name="marca">Marca</string>
     <string name="placa">Placa</string>
+    <string name="stringVacio"></string>
 
 </resources>
